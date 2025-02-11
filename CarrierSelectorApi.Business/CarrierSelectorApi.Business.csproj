@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CarrierSelectorApi.DataAccess\CarrierSelectorApi.DataAccess.csproj" />
+    <ProjectReference Include="..\CarrierSelectorApi.Entities\CarrierSelectorApi.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
