@@ -37,16 +37,20 @@ namespace CarrierSelectorApi.DataAccess.Concrete
             await _context.SaveChangesAsync();
         }
 
-        public void Update(T entity)
+        public async Task UpdateAsync(T entity)
         {
             _dbSet.Update(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(T entity)
+        public async Task DeleteAsync(int id)
         {
-            _dbSet.Remove(entity);
-            _context.SaveChanges();
+            var entity = await _dbSet.FindAsync(id);
+            if (entity != null)
+            {
+                _dbSet.Remove(entity);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate)

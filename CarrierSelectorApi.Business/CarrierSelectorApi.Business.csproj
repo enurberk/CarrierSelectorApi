@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Abdstract\**" />
+    <EmbeddedResource Remove="Abdstract\**" />
+    <None Remove="Abdstract\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CarrierSelectorApi.DataAccess\CarrierSelectorApi.DataAccess.csproj" />
     <ProjectReference Include="..\CarrierSelectorApi.Entities\CarrierSelectorApi.Entities.csproj" />
   </ItemGroup>
