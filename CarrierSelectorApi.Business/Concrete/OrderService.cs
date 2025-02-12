@@ -1,15 +1,8 @@
 ﻿using AutoMapper;
 using CarrierSelectorApi.Business.Abstract;
 using CarrierSelectorApi.DataAccess.Abstract;
-using CarrierSelectorApi.DataAccess.Concrete;
 using CarrierSelectorApi.Entities.DTOs.OrderDTOs;
 using CarrierSelectorApi.Entities.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace CarrierSelectorApi.Business.Concrete
 {

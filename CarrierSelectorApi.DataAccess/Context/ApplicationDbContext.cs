@@ -16,6 +16,7 @@ namespace CarrierSelectorApi.DataAccess.Context
         public DbSet<Carrier> Carriers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<CarrierConfiguration> CarrierConfigurations { get; set; }
+        public DbSet<CarrierReport> CarrierReports { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierSelectorApi.API", "CarrierSelectorApi.API\CarrierSelectorApi.API.csproj", "{4716A88C-0AA2-4F12-AC92-AEFCCD13BC57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierSelectorApi.API", "CarrierSelectorApi.API\CarrierSelectorApi.API.csproj", "{4716A88C-0AA2-4F12-AC92-AEFCCD13BC57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierSelectorApi.Business", "CarrierSelectorApi.Business\CarrierSelectorApi.Business.csproj", "{7575D802-C798-41E8-A7A0-A4130D2F7282}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierSelectorApi.Business", "CarrierSelectorApi.Business\CarrierSelectorApi.Business.csproj", "{7575D802-C798-41E8-A7A0-A4130D2F7282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierSelectorApi.DataAccess", "CarrierSelectorApi.DataAccess\CarrierSelectorApi.DataAccess.csproj", "{38E732AE-753F-4C30-9F1A-4BBD0574881B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierSelectorApi.DataAccess", "CarrierSelectorApi.DataAccess\CarrierSelectorApi.DataAccess.csproj", "{38E732AE-753F-4C30-9F1A-4BBD0574881B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierSelectorApi.Entities", "CarrierSelectorApi.Entities\CarrierSelectorApi.Entities.csproj", "{A30B2B27-F3C7-4FA1-ADE4-1083E0755620}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarrierSelectorApi.Core", "CarrierSelectorApi.Core\CarrierSelectorApi.Core.csproj", "{76905425-53AD-4399-B110-91AAD423131F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarrierSelectorApi.Entities", "CarrierSelectorApi.Entities\CarrierSelectorApi.Entities.csproj", "{A30B2B27-F3C7-4FA1-ADE4-1083E0755620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{A30B2B27-F3C7-4FA1-ADE4-1083E0755620}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A30B2B27-F3C7-4FA1-ADE4-1083E0755620}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A30B2B27-F3C7-4FA1-ADE4-1083E0755620}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76905425-53AD-4399-B110-91AAD423131F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76905425-53AD-4399-B110-91AAD423131F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76905425-53AD-4399-B110-91AAD423131F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76905425-53AD-4399-B110-91AAD423131F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

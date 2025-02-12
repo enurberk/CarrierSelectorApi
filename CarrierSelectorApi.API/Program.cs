@@ -1,9 +1,11 @@
 using CarrierSelectorApi.Business.Abstract;
 using CarrierSelectorApi.Business.Concrete;
+using CarrierSelectorApi.Business.Jobs;
 using CarrierSelectorApi.Business.MappingProfile;
 using CarrierSelectorApi.DataAccess.Abstract;
 using CarrierSelectorApi.DataAccess.Concrete;
 using CarrierSelectorApi.DataAccess.Context;
+using Hangfire;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,12 +24,22 @@ builder.Services.AddScoped<ICarrierConfigurationService, CarrierConfigurationSer
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
+builder.Services.AddHangfire(config => config
+    .SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+    .UseSimpleAssemblyNameTypeSerializer()
+    .UseRecommendedSerializerSettings()
+    .UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddHangfireServer();
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseHangfireDashboard();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -41,5 +53,15 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+RecurringJob.AddOrUpdate<CarrierReportJob>(
+    "Generate_Carrier_Report",
+   job => job.GenerateCarrierReport(),
+   Cron.Hourly);
+
+//RecurringJob.AddOrUpdate<CarrierReportJob>(
+//    "Generate_Carrier_Report",
+//    job => job.GenerateCarrierReport(),
+//    "*/10 * * * *");
 
 app.Run();
