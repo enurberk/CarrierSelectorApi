@@ -13,6 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CarrierSelectorApi.DataAccess\CarrierSelectorApi.DataAccess.csproj" />
     <ProjectReference Include="..\CarrierSelectorApi.Entities\CarrierSelectorApi.Entities.csproj" />
   </ItemGroup>

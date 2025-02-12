@@ -1,4 +1,5 @@
-﻿using CarrierSelectorApi.Entities.Entities;
+﻿using CarrierSelectorApi.Entities.DTOs.CarrierDTOs;
+using CarrierSelectorApi.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace CarrierSelectorApi.Business.Abstract
 {
     public interface ICarrierService
     {
-        Task<IEnumerable<Carrier>> GetAllCarriersAsync();
-        Task<Carrier> GetCarrierByIdAsync(int id);
-        Task<string> AddCarrierAsync(Carrier carrier);
-        Task<string> UpdateCarrierAsync(Carrier carrier);
+        Task<IEnumerable<CarrierDto>> GetAllCarriersAsync();
+        Task<CarrierDto> GetCarrierByIdAsync(int id);
+        Task<string> AddCarrierAsync(CarrierCreateDto carrier);
+        Task<string> UpdateCarrierAsync(CarrierUpdateDto carrier);
         Task<string> DeleteCarrierAsync(int id);
     }
 }

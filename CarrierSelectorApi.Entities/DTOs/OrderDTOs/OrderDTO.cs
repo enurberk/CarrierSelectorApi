@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarrierSelectorApi.Entities.DTOs.OrderDTOs
 {
-    public class OrderDTO
+    public class OrderDto
     {
         public int OrderId { get; set; }
         public int CarrierId { get; set; }

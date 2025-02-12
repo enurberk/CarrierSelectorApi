@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarrierSelectorApi.Entities.DTOs.CarrierDTOs
 {
-    public class CarrierCreateDTO
+    public class CarrierCreateDto
     {
         public string CarrierName { get; set; } = string.Empty;
         public bool CarrierIsActive { get; set; }

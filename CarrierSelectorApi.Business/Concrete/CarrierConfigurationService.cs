@@ -1,5 +1,7 @@
-﻿using CarrierSelectorApi.Business.Abstract;
+﻿using AutoMapper;
+using CarrierSelectorApi.Business.Abstract;
 using CarrierSelectorApi.DataAccess.Abstract;
+using CarrierSelectorApi.Entities.DTOs.CarrierConfigurationDTOs;
 using CarrierSelectorApi.Entities.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,26 +14,31 @@ namespace CarrierSelectorApi.Business.Concrete
     public class CarrierConfigurationService : ICarrierConfigurationService
     {
         private readonly ICarrierConfigurationRepository _carrierConfigRepository;
+        private readonly IMapper _mapper;
 
-        public CarrierConfigurationService(ICarrierConfigurationRepository carrierConfigRepository)
+        public CarrierConfigurationService(ICarrierConfigurationRepository carrierConfigRepository, IMapper mapper)
         {
             _carrierConfigRepository = carrierConfigRepository;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CarrierConfiguration>> GetAllCarrierConfigurationsAsync()
+        public async Task<IEnumerable<CarrierConfigurationDto>> GetAllCarrierConfigurationsAsync()
         {
-            return await _carrierConfigRepository.GetAllAsync();
+            var configs = await _carrierConfigRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<CarrierConfigurationDto>>(configs);
         }
 
-        public async Task<string> AddCarrierConfigurationAsync(CarrierConfiguration config)
+        public async Task<string> AddCarrierConfigurationAsync(CarrierConfigurationCreateDto configDto)
         {
-            await _carrierConfigRepository.AddAsync(config);
+            var configEntity = _mapper.Map<CarrierConfiguration>(configDto);
+            await _carrierConfigRepository.AddAsync(configEntity);
             return "Kargo firması konfigürasyonu eklendi.";
         }
 
-        public async Task<string> UpdateCarrierConfigurationAsync(CarrierConfiguration config)
+        public async Task<string> UpdateCarrierConfigurationAsync(CarrierConfigurationUpdateDto configDto)
         {
-            await _carrierConfigRepository.UpdateAsync(config);
+            var configEntity = _mapper.Map<CarrierConfiguration>(configDto);
+            await _carrierConfigRepository.UpdateAsync(configEntity);
             return "Kargo firması konfigürasyonu güncellendi.";
         }
 

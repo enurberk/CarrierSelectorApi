@@ -1,4 +1,5 @@
-﻿using CarrierSelectorApi.Entities.Entities;
+﻿using CarrierSelectorApi.Entities.DTOs.OrderDTOs;
+using CarrierSelectorApi.Entities.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace CarrierSelectorApi.Business.Abstract
 {
     public interface IOrderService
     {
-        Task<IEnumerable<Order>> GetAllOrdersAsync();
-        Task<string> AddOrderAsync(Order order);
+        Task<IEnumerable<OrderDto>> GetAllOrdersAsync();
+        Task<string> AddOrderAsync(OrderCreateDto order);
         Task<string> DeleteOrderAsync(int id);
     }
 }

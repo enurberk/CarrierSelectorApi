@@ -1,5 +1,7 @@
-﻿using CarrierSelectorApi.Business.Abstract;
+﻿using AutoMapper;
+using CarrierSelectorApi.Business.Abstract;
 using CarrierSelectorApi.DataAccess.Abstract;
+using CarrierSelectorApi.Entities.DTOs.OrderDTOs;
 using CarrierSelectorApi.Entities.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,27 +15,32 @@ namespace CarrierSelectorApi.Business.Concrete
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ICarrierConfigurationRepository _carrierConfigRepository;
-        private readonly ICarrierRepository _carrierRepository;
+        private readonly IMapper _mapper;
 
-        public OrderService(IOrderRepository orderRepository, ICarrierConfigurationRepository carrierConfigRepository, ICarrierRepository carrierRepository)
+        public OrderService(
+            IOrderRepository orderRepository,
+            ICarrierConfigurationRepository carrierConfigRepository,
+            ICarrierRepository carrierRepository,
+            IMapper mapper)
         {
             _orderRepository = orderRepository;
             _carrierConfigRepository = carrierConfigRepository;
-            _carrierRepository = carrierRepository;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
+        public async Task<IEnumerable<OrderDto>> GetAllOrdersAsync()
         {
-            return await _orderRepository.GetAllAsync();
+            var orders = await _orderRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<OrderDto>>(orders);
         }
 
-        public async Task<string> AddOrderAsync(Order order)
+        public async Task<string> AddOrderAsync(OrderCreateDto orderDto)
         {
+            var orderEntity = _mapper.Map<Order>(orderDto);
             var carrierConfigs = await _carrierConfigRepository.GetAllAsync();
 
-            // Sipariş desisi bir kargo firmasının aralığına giriyor mu?
             var validCarriers = carrierConfigs
-                .Where(c => order.OrderDesi >= c.CarrierMinDesi && order.OrderDesi <= c.CarrierMaxDesi)
+                .Where(c => orderEntity.OrderDesi >= c.CarrierMinDesi && orderEntity.OrderDesi <= c.CarrierMaxDesi)
                 .OrderBy(c => c.CarrierCost)
                 .ToList();
 
@@ -48,17 +55,17 @@ namespace CarrierSelectorApi.Business.Concrete
             }
             else
             {
-                var closestCarrier = carrierConfigs.OrderBy(c => Math.Abs(order.OrderDesi - c.CarrierMaxDesi)).First();
-                int difference = order.OrderDesi - closestCarrier.CarrierMaxDesi;
+                var closestCarrier = carrierConfigs.OrderBy(c => Math.Abs(orderEntity.OrderDesi - c.CarrierMaxDesi)).First();
+                int difference = orderEntity.OrderDesi - closestCarrier.CarrierMaxDesi;
                 calculatedCost = closestCarrier.CarrierCost + (difference * closestCarrier.Carrier.CarrierPlusDesiCost);
                 selectedCarrierId = closestCarrier.CarrierId;
             }
 
-            order.OrderCarrierCost = calculatedCost;
-            order.CarrierId = selectedCarrierId;
-            order.OrderDate = DateTime.UtcNow;
+            orderEntity.OrderCarrierCost = calculatedCost;
+            orderEntity.CarrierId = selectedCarrierId;
+            orderEntity.OrderDate = DateTime.UtcNow;
 
-            await _orderRepository.AddAsync(order);
+            await _orderRepository.AddAsync(orderEntity);
             return $"Sipariş başarıyla oluşturuldu. Seçilen kargo firması: {selectedCarrierId}, Toplam Kargo Ücreti: {calculatedCost}₺";
         }
 

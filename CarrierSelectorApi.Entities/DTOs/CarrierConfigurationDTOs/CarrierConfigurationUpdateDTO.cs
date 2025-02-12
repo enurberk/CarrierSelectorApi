@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarrierSelectorApi.Entities.DTOs.CarrierConfigurationDTOs
 {
-    public class CarrierConfigurationUpdateDTO
+    public class CarrierConfigurationUpdateDto
     {
         public int CarrierConfigurationId { get; set; }
         public int CarrierId { get; set; }
