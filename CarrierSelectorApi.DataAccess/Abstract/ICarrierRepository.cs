@@ -9,6 +9,5 @@ namespace CarrierSelectorApi.DataAccess.Abstract
 {
     public interface ICarrierRepository : IGenericRepository<Carrier>
     {
-        //Task<IEnumerable<Carrier>> GetActiveCarriersAsync();
     }
 }

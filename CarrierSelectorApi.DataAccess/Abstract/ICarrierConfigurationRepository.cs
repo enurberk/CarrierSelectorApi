@@ -9,6 +9,5 @@ namespace CarrierSelectorApi.DataAccess.Abstract
 {
     public interface ICarrierConfigurationRepository : IGenericRepository<CarrierConfiguration>
     {
-        //Task<CarrierConfiguration> GetByDesiRangeAsync(int carrierId, int desi);
     }
 }

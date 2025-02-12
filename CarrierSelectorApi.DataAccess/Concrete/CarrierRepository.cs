@@ -15,10 +15,5 @@ namespace CarrierSelectorApi.DataAccess.Concrete
         public CarrierRepository(ApplicationDbContext context) : base(context)
         {
         }
-
-        //public async Task<IEnumerable<Carrier>> GetActiveCarriersAsync()
-        //{
-        //    return await _context.Carriers.Where(c => c.CarrierIsActive).ToListAsync();
-        //}
     }
 }

@@ -1,5 +1,7 @@
 ﻿using CarrierSelectorApi.Business.Abstract;
+using CarrierSelectorApi.Business.Concrete;
 using CarrierSelectorApi.Entities.DTOs.CarrierConfigurationDTOs;
+using CarrierSelectorApi.Entities.DTOs.CarrierDTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarrierSelectorApi.API.Controllers
@@ -25,22 +27,22 @@ namespace CarrierSelectorApi.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCarrierConfiguration([FromBody] CarrierConfigurationCreateDto carrierConfigDto)
         {
-            await _carrierConfigurationService.AddCarrierConfigurationAsync(carrierConfigDto);
-            return Ok("Kargo firması konfigürasyonu başarıyla eklendi.");
+            var resultMessage = await _carrierConfigurationService.AddCarrierConfigurationAsync(carrierConfigDto);
+            return Ok(resultMessage);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCarrierConfiguration(int id, [FromBody] CarrierConfigurationUpdateDto carrierConfigDto)
         {
-            await _carrierConfigurationService.UpdateCarrierConfigurationAsync(carrierConfigDto);
-            return Ok("Kargo firması konfigürasyonu başarıyla güncellendi.");
+            var resultMessage = await _carrierConfigurationService.UpdateCarrierConfigurationAsync(carrierConfigDto);
+            return Ok(resultMessage);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCarrierConfiguration(int id)
         {
-            await _carrierConfigurationService.DeleteCarrierConfigurationAsync(id);
-            return Ok("Kargo firması konfigürasyonu başarıyla silindi.");
+            var resultMessage = await _carrierConfigurationService.DeleteCarrierConfigurationAsync(id);
+            return Ok(resultMessage);
         }
     }
 }

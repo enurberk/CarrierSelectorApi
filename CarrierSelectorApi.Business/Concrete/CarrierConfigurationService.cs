@@ -14,11 +14,13 @@ namespace CarrierSelectorApi.Business.Concrete
     public class CarrierConfigurationService : ICarrierConfigurationService
     {
         private readonly ICarrierConfigurationRepository _carrierConfigRepository;
+        private readonly ICarrierRepository _carrierRepository;
         private readonly IMapper _mapper;
 
-        public CarrierConfigurationService(ICarrierConfigurationRepository carrierConfigRepository, IMapper mapper)
+        public CarrierConfigurationService(ICarrierConfigurationRepository carrierConfigRepository, ICarrierRepository carrierRepository,IMapper mapper)
         {
             _carrierConfigRepository = carrierConfigRepository;
+            _carrierRepository = carrierRepository;
             _mapper = mapper;
         }
 

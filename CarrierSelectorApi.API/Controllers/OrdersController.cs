@@ -25,15 +25,15 @@ namespace CarrierSelectorApi.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddOrder([FromBody] OrderCreateDto orderDto)
         {
-            await _orderService.AddOrderAsync(orderDto);
-            return Ok("Sipariş başarıyla eklendi.");
+            var resultMessage = await _orderService.AddOrderAsync(orderDto);
+            return Ok(resultMessage);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
-            await _orderService.DeleteOrderAsync(id);
-            return Ok("Sipariş başarıyla silindi.");
+            var resultMessage = await _orderService.DeleteOrderAsync(id);
+            return Ok(resultMessage);
         }
     }
 }

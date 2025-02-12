@@ -9,6 +9,5 @@ namespace CarrierSelectorApi.DataAccess.Abstract
 {
     public interface IOrderRepository : IGenericRepository<Order>
     {
-        //Task<IEnumerable<Order>> GetOrdersByCarrierIdAsync(int carrierId);
     }
 }

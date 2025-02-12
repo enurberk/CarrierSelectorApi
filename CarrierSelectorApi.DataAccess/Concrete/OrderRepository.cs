@@ -15,10 +15,5 @@ namespace CarrierSelectorApi.DataAccess.Concrete
         public OrderRepository(ApplicationDbContext context) : base(context)
         {
         }
-
-        //public async Task<IEnumerable<Order>> GetOrdersByCarrierIdAsync(int carrierId)
-        //{
-        //    return await _context.Orders.Where(o => o.CarrierId == carrierId).ToListAsync();
-        //}
     }
 }

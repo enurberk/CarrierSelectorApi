@@ -15,12 +15,5 @@ namespace CarrierSelectorApi.DataAccess.Concrete
         public CarrierConfigurationRepository(ApplicationDbContext context) : base(context)
         {
         }
-
-        //public async Task<CarrierConfiguration> GetByDesiRangeAsync(int carrierId, int desi)
-        //{
-        //    return await _context.CarrierConfigurations
-        //        .Where(c => c.CarrierId == carrierId && c.CarrierMinDesi <= desi && c.CarrierMaxDesi >= desi)
-        //        .FirstOrDefaultAsync();
-        //}
     }
 }
